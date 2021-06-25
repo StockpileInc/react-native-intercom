@@ -31,12 +31,8 @@ class RNNIntercomModule(reactContext: ReactApplicationContext) : ReactContextBas
     }
 
     @ReactMethod
-    fun registerUserWithIdentifier(email: String?, userId: String?, promise: Promise) {
-      val attributes: IntercomUserAttributes = io.intercom.android.sdk.UserAttributes.Builder()
-        .withUserId(userId)
-        .withEmail(email)
-        .build()
-      Intercom.client().registerIdentifiedUser(Registration.create().withUserAttributes(attributes))
+    fun registerUserWithIdentifier(email: String, userId: String, promise: Promise) {
+      Intercom.client().registerIdentifiedUser(Registration.create().withUserId(userId).withEmail(email))
       promise.resolve(null)
     }
 
